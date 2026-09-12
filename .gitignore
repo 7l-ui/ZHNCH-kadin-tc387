@@ -1,0 +1,27 @@
+# Build outputs
+Debug/
+Release/
+*.o
+*.d
+*.src
+*.elf
+*.hex
+*.map
+*.lst
+*.srec
+
+# IDE and generated metadata that should stay local
+.metadata/
+.recommenders/
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+Thumbs.db
+Desktop.ini
+__pycache__/
+*.py[cod]
+
+# Local debug artifacts
+visualizations/

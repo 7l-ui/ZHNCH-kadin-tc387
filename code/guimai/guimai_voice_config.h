@@ -1,0 +1,585 @@
+#ifndef CODE_GUIMAI_VOICE_CONFIG_H_
+#define CODE_GUIMAI_VOICE_CONFIG_H_
+
+#include "guimai_voice_config_local.h"
+
+#ifndef GUIMAI_AUDIO_USE_ADC
+#define GUIMAI_AUDIO_USE_ADC          (1)
+#endif
+#ifndef GUIMAI_ADC_CHANNEL
+/* ADC group 0 is dedicated to audio; select ADC0_CH0_A0 through ADC0_CH7_A7. */
+#define GUIMAI_ADC_CHANNEL            ADC0_CH0_A0
+#endif
+#ifndef GUIMAI_ADC_PCM_GAIN
+#define GUIMAI_ADC_PCM_GAIN           (16)
+#endif
+#ifndef GUIMAI_ADC_DC_FILTER_DIV
+#define GUIMAI_ADC_DC_FILTER_DIV      (128)
+#endif
+
+/*
+ * Porting configuration for the GUIMAI voice/ASR chain.
+ *
+ * This project uses EVADC group 0, ATOM1_CH4 and DMA20 for 16 kHz PCM.
+ * Legacy ES8388 options below are inactive while GUIMAI_AUDIO_USE_ADC is 1.
+ * ADC input needs an in-range biased analog waveform; software removes DC.
+ */
+
+#ifndef GUIMAI_VOICE_EXTERNAL_TRIGGER
+#define GUIMAI_VOICE_EXTERNAL_TRIGGER  (0)
+#endif
+
+#ifndef GUIMAI_VOICE_INIT_LORA
+#define GUIMAI_VOICE_INIT_LORA         (1)
+#endif
+
+#ifndef GUIMAI_TRIGGER_USE_XL9555_KEY3
+#define GUIMAI_TRIGGER_USE_XL9555_KEY3 (1)
+#endif
+
+#ifndef GUIMAI_XL9555_KEY_NUM
+#define GUIMAI_XL9555_KEY_NUM          (3)
+#endif
+
+#ifndef GUIMAI_SWITCH_IO
+#define GUIMAI_SWITCH_IO               (P33_12)
+#endif
+
+#ifndef GUIMAI_LORA_UART
+#define GUIMAI_LORA_UART               (UART_4)
+#endif
+
+#ifndef GUIMAI_LORA_RX_PIN
+#define GUIMAI_LORA_RX_PIN             (UART4_TX_P00_9)
+#endif
+
+#ifndef GUIMAI_LORA_TX_PIN
+#define GUIMAI_LORA_TX_PIN             (UART4_RX_P00_12)
+#endif
+
+#ifndef GUIMAI_LORA_BAUD
+#define GUIMAI_LORA_BAUD               (115200)
+#endif
+
+#ifndef GUIMAI_WIFI_SSID
+#define GUIMAI_WIFI_SSID               "YOUR_WIFI_SSID"
+#endif
+
+#ifndef GUIMAI_WIFI_PASSWORD
+#define GUIMAI_WIFI_PASSWORD           "YOUR_WIFI_PASSWORD"
+#endif
+
+#ifndef GUIMAI_WIFI_TARGET_IP
+#define GUIMAI_WIFI_TARGET_IP          "192.168.87.163"
+#endif
+
+#ifndef GUIMAI_WIFI_TARGET_PORT
+#define GUIMAI_WIFI_TARGET_PORT        "8080"
+#endif
+
+#ifndef GUIMAI_WIFI_INIT_RETRY
+#define GUIMAI_WIFI_INIT_RETRY         (10)
+#endif
+
+#ifndef GUIMAI_WIFI_INIT_ON_BOOT
+#define GUIMAI_WIFI_INIT_ON_BOOT       (1)
+#endif
+
+#ifndef GUIMAI_WIFI_INIT_ON_RECORD
+#define GUIMAI_WIFI_INIT_ON_RECORD     (0)
+#endif
+#ifndef GUIMAI_WIFI_USE_RTS_FLOW
+#define GUIMAI_WIFI_USE_RTS_FLOW       (1)
+#endif
+
+#ifndef GUIMAI_MUSIC_ENABLE
+#define GUIMAI_MUSIC_ENABLE            (1)
+#endif
+
+#ifndef GUIMAI_HORN_ENABLE
+#define GUIMAI_HORN_ENABLE             (1)
+#endif
+
+#ifndef GUIMAI_HORN_BLOCKING_PLAY
+#define GUIMAI_HORN_BLOCKING_PLAY      (1)
+#endif
+
+#ifndef GUIMAI_HORN_USE_BUZZER
+#define GUIMAI_HORN_USE_BUZZER         (1)
+#endif
+
+#ifndef GUIMAI_HORN_BUZZER_PIN
+#define GUIMAI_HORN_BUZZER_PIN         (P33_10)
+#endif
+
+#ifndef GUIMAI_HORN_BUZZER_ACTIVE_HIGH
+#define GUIMAI_HORN_BUZZER_ACTIVE_HIGH (1)
+#endif
+
+#ifndef GUIMAI_HORN_BUZZER_TOGGLE
+#define GUIMAI_HORN_BUZZER_TOGGLE      (0)
+#endif
+
+#ifndef GUIMAI_HORN_PWM_TEST_ALWAYS_ON
+#define GUIMAI_HORN_PWM_TEST_ALWAYS_ON (0)
+#endif
+
+#ifndef GUIMAI_HORN_PWM_TEST_FREQ_HZ
+#define GUIMAI_HORN_PWM_TEST_FREQ_HZ   (1000U)
+#endif
+
+#ifndef GUIMAI_HORN_PWM_TEST_DUTY
+#define GUIMAI_HORN_PWM_TEST_DUTY      (5000U)
+#endif
+
+#ifndef GUIMAI_HORN_PWM_DUTY
+#define GUIMAI_HORN_PWM_DUTY           (5000U)
+#endif
+
+#ifndef GUIMAI_MUSIC_FOLDER
+#define GUIMAI_MUSIC_FOLDER            "0:/MUSIC"
+#endif
+
+#ifndef GUIMAI_MUSIC_VOLUME
+#define GUIMAI_MUSIC_VOLUME            (55U)
+#endif
+
+#ifndef GUIMAI_MUSIC_TEST_TONE_ON_PLAY
+#define GUIMAI_MUSIC_TEST_TONE_ON_PLAY (1)
+#endif
+
+#ifndef GUIMAI_MUSIC_KEY_TASK_ID
+#define GUIMAI_MUSIC_KEY_TASK_ID       (2U)
+#endif
+
+#ifndef GUIMAI_CMD_HORN_1S
+#define GUIMAI_CMD_HORN_1S             (32U)
+#endif
+#ifndef GUIMAI_CMD_HORN_2S
+#define GUIMAI_CMD_HORN_2S             (33U)
+#endif
+#ifndef GUIMAI_CMD_HORN_3S
+#define GUIMAI_CMD_HORN_3S             (34U)
+#endif
+#ifndef GUIMAI_CMD_HORN_2_BEEP
+#define GUIMAI_CMD_HORN_2_BEEP         (35U)
+#endif
+#ifndef GUIMAI_CMD_HORN_3_BEEP
+#define GUIMAI_CMD_HORN_3_BEEP         (36U)
+#endif
+#ifndef GUIMAI_CMD_HORN_4_BEEP
+#define GUIMAI_CMD_HORN_4_BEEP         (37U)
+#endif
+#ifndef GUIMAI_CMD_HORN_SHORT_LONG
+#define GUIMAI_CMD_HORN_SHORT_LONG     (38U)
+#endif
+#ifndef GUIMAI_CMD_HORN_RAPID
+#define GUIMAI_CMD_HORN_RAPID          (39U)
+#endif
+#ifndef GUIMAI_CMD_HORN_ALARM
+#define GUIMAI_CMD_HORN_ALARM          (40U)
+#endif
+
+#ifndef GUIMAI_FRAME_HEADER_0
+#define GUIMAI_FRAME_HEADER_0          (0xA1)
+#endif
+#ifndef GUIMAI_FRAME_HEADER_1
+#define GUIMAI_FRAME_HEADER_1          (0xB2)
+#endif
+#ifndef GUIMAI_FRAME_HEADER_2
+#define GUIMAI_FRAME_HEADER_2          (0xC3)
+#endif
+#ifndef GUIMAI_FRAME_HEADER_3
+#define GUIMAI_FRAME_HEADER_3          (0xD4)
+#endif
+
+#ifndef GUIMAI_FRAME_PAYLOAD_SIZE
+#define GUIMAI_FRAME_PAYLOAD_SIZE      (640)
+#endif
+
+#ifndef GUIMAI_FRAME_SIZE
+#define GUIMAI_FRAME_SIZE              (4 + 1 + GUIMAI_FRAME_PAYLOAD_SIZE)
+#endif
+
+#ifndef GUIMAI_MIC_BUF_LEN
+#define GUIMAI_MIC_BUF_LEN             (GUIMAI_FRAME_PAYLOAD_SIZE / 2)
+#endif
+
+#ifndef GUIMAI_AUDIO_SAMPLE_RATE
+#define GUIMAI_AUDIO_SAMPLE_RATE       (16000)
+#endif
+
+#ifndef GUIMAI_TRIGGER_TASK_ID
+#define GUIMAI_TRIGGER_TASK_ID         (2U)
+#endif
+
+#ifndef GUIMAI_TRIGGER_PAGE_ID
+#define GUIMAI_TRIGGER_PAGE_ID         (InfoPage)
+#endif
+
+#ifndef GUIMAI_LINEIN_SRC_A
+#define GUIMAI_LINEIN_SRC_A            (0U)
+#endif
+#ifndef GUIMAI_LINEIN_SRC_B
+#define GUIMAI_LINEIN_SRC_B            (1U)
+#endif
+#ifndef GUIMAI_LINEIN_SRC_C
+#define GUIMAI_LINEIN_SRC_C            (2U)
+#endif
+#ifndef GUIMAI_LINEIN_SRC_D
+#define GUIMAI_LINEIN_SRC_D            (3U)
+#endif
+
+#ifndef GUIMAI_IIS_FMT_I2S
+#define GUIMAI_IIS_FMT_I2S             (0U)
+#endif
+#ifndef GUIMAI_IIS_FMT_LEFT_J
+#define GUIMAI_IIS_FMT_LEFT_J          (1U)
+#endif
+#ifndef GUIMAI_IIS_FMT_RIGHT_J
+#define GUIMAI_IIS_FMT_RIGHT_J         (2U)
+#endif
+#ifndef GUIMAI_LINEIN_IIS_FORMAT
+#define GUIMAI_LINEIN_IIS_FORMAT       GUIMAI_IIS_FMT_I2S
+#endif
+
+#ifndef GUIMAI_LINEIN_AUTO_PROBE
+#define GUIMAI_LINEIN_AUTO_PROBE       (0)
+#endif
+#ifndef GUIMAI_LINEIN_INIT_ON_BOOT
+#define GUIMAI_LINEIN_INIT_ON_BOOT     (0)
+#endif
+#ifndef GUIMAI_LINEIN_SRC_SCAN_ON_START
+#define GUIMAI_LINEIN_SRC_SCAN_ON_START (0)
+#endif
+#ifndef GUIMAI_LINEIN_SRC_SCAN_MS
+#define GUIMAI_LINEIN_SRC_SCAN_MS      (350U)
+#endif
+#ifndef GUIMAI_LINEIN_SRC_SCAN_TARGET_SAMPLES
+#define GUIMAI_LINEIN_SRC_SCAN_TARGET_SAMPLES (1536U)
+#endif
+#ifndef GUIMAI_LINEIN_SRC_SCAN_CLIP_LEVEL
+#define GUIMAI_LINEIN_SRC_SCAN_CLIP_LEVEL (30000)
+#endif
+#ifndef GUIMAI_IIS_SCAN_ON_START
+#define GUIMAI_IIS_SCAN_ON_START       (0)
+#endif
+#ifndef GUIMAI_IIS_SCAN_LOOPS
+#define GUIMAI_IIS_SCAN_LOOPS          (4000U)
+#endif
+
+#ifndef GUIMAI_RECORD_CLOCK_RETRY_ENABLE
+#define GUIMAI_RECORD_CLOCK_RETRY_ENABLE (1)
+#endif
+#ifndef GUIMAI_RECORD_CLOCK_CHECK_DELAY_MS
+#define GUIMAI_RECORD_CLOCK_CHECK_DELAY_MS (80U)
+#endif
+#ifndef GUIMAI_RECORD_CLOCK_RETRY_COUNT
+#define GUIMAI_RECORD_CLOCK_RETRY_COUNT (6U)
+#endif
+#ifndef GUIMAI_RECORD_CLOCK_RETRY_SETTLE_MS
+#define GUIMAI_RECORD_CLOCK_RETRY_SETTLE_MS (100U)
+#endif
+#ifndef GUIMAI_RECORD_PRE_MCLK_ENABLE
+#define GUIMAI_RECORD_PRE_MCLK_ENABLE (0)
+#endif
+#ifndef GUIMAI_RECORD_PRE_MCLK_MS
+#define GUIMAI_RECORD_PRE_MCLK_MS     (80U)
+#endif
+#ifndef GUIMAI_AUDIO_RELEASE_SETTLE_MS
+#define GUIMAI_AUDIO_RELEASE_SETTLE_MS (60U)
+#endif
+#ifndef GUIMAI_ASR_COMMAND_WAIT_ENABLE
+#define GUIMAI_ASR_COMMAND_WAIT_ENABLE (1)
+#endif
+#ifndef GUIMAI_ASR_COMMAND_WAIT_MS
+#define GUIMAI_ASR_COMMAND_WAIT_MS     (16000U)
+#endif
+#ifndef GUIMAI_TEXT_RX_TIMEOUT_MS
+#define GUIMAI_TEXT_RX_TIMEOUT_MS      (1000U)
+#endif
+#ifndef GUIMAI_VOICE_LIGHT_HORN_GAP_MS
+#define GUIMAI_VOICE_LIGHT_HORN_GAP_MS (600U)
+#endif
+
+#ifndef GUIMAI_AUDIO_RUNTIME_DIAG
+#define GUIMAI_AUDIO_RUNTIME_DIAG      (0)
+#endif
+#ifndef GUIMAI_BCK_PORT_DIAG
+#define GUIMAI_BCK_PORT_DIAG           (0)
+#endif
+#ifndef GUIMAI_BCK_CLOCK_MISS_DIAG
+#define GUIMAI_BCK_CLOCK_MISS_DIAG     (1)
+#endif
+
+#ifndef GUIMAI_RECORD_DEFER_TX
+#define GUIMAI_RECORD_DEFER_TX         (1)
+#endif
+#ifndef GUIMAI_RECORD_TIGHT_LOOP
+#define GUIMAI_RECORD_TIGHT_LOOP       (1)
+#endif
+#ifndef GUIMAI_RECORD_USE_CPU1
+#define GUIMAI_RECORD_USE_CPU1         (1)
+#endif
+#ifndef GUIMAI_RECORD_USE_CPU2
+#define GUIMAI_RECORD_USE_CPU2         (0)
+#endif
+#if (GUIMAI_RECORD_USE_CPU1 && GUIMAI_RECORD_USE_CPU2)
+#error "Only one dedicated voice capture core may be enabled."
+#endif
+#define GUIMAI_RECORD_USE_DEDICATED_CORE \
+    (GUIMAI_RECORD_USE_CPU1 || GUIMAI_RECORD_USE_CPU2)
+#ifndef GUIMAI_RECORD_STREAM_TX
+#define GUIMAI_RECORD_STREAM_TX        (1)
+#endif
+#ifndef GUIMAI_STREAM_TX_QUEUE_DEPTH
+#define GUIMAI_STREAM_TX_QUEUE_DEPTH   (8U)
+#endif
+#ifndef GUIMAI_STREAM_TX_DEBUG
+#define GUIMAI_STREAM_TX_DEBUG         (0)
+#endif
+#ifndef GUIMAI_STREAM_TX_DIRECT_UART
+#define GUIMAI_STREAM_TX_DIRECT_UART   (0)
+#endif
+#ifndef GUIMAI_STREAM_TX_UNCACHED_ALIAS
+#define GUIMAI_STREAM_TX_UNCACHED_ALIAS (1)
+#endif
+#ifndef GUIMAI_RECORD_STORE_SAMPLES
+#define GUIMAI_RECORD_STORE_SAMPLES    (48000U)
+#endif
+#ifndef GUIMAI_RECORD_AUTO_STOP_ENABLE
+#define GUIMAI_RECORD_AUTO_STOP_ENABLE (1)
+#endif
+#ifndef GUIMAI_RECORD_AUTO_STOP_MS
+#define GUIMAI_RECORD_AUTO_STOP_MS     (8000U)
+#endif
+#ifndef GUIMAI_RECORD_TRANSFORM_DIAG
+#define GUIMAI_RECORD_TRANSFORM_DIAG   (0)
+#endif
+#ifndef GUIMAI_RECORD_PCM_TRANSFORM_MODE
+#define GUIMAI_RECORD_PCM_TRANSFORM_MODE (1U)
+#endif
+#ifndef GUIMAI_RECORD_TRIM_LEADING_ZERO
+#define GUIMAI_RECORD_TRIM_LEADING_ZERO (1)
+#endif
+#ifndef GUIMAI_RECORD_START_HEALTH_ENABLE
+#define GUIMAI_RECORD_START_HEALTH_ENABLE (1)
+#endif
+#ifndef GUIMAI_RECORD_START_HEALTH_SAMPLES
+#define GUIMAI_RECORD_START_HEALTH_SAMPLES (640U)
+#endif
+#ifndef GUIMAI_RECORD_START_HEALTH_MIN_AVG
+#define GUIMAI_RECORD_START_HEALTH_MIN_AVG (4U)
+#endif
+#ifndef GUIMAI_RECORD_START_HEALTH_MIN_PEAK
+#define GUIMAI_RECORD_START_HEALTH_MIN_PEAK (512U)
+#endif
+
+#ifndef GUIMAI_GTM_DMA_CAPTURE
+#define GUIMAI_GTM_DMA_CAPTURE         (1)
+#endif
+#ifndef GUIMAI_GTM_DMA_CHANNEL
+#define GUIMAI_GTM_DMA_CHANNEL         IfxDma_ChannelId_20
+#endif
+#ifndef GUIMAI_GTM_DMA_CHUNK_WORDS
+#define GUIMAI_GTM_DMA_CHUNK_WORDS     (2048U)
+#endif
+#ifndef GUIMAI_GTM_DMA_RING_WORDS
+#define GUIMAI_GTM_DMA_RING_WORDS      (GUIMAI_GTM_DMA_CHUNK_WORDS * 2U)
+#endif
+#ifndef GUIMAI_GTM_DMA_SAMPLE_LEADING_EDGE
+#define GUIMAI_GTM_DMA_SAMPLE_LEADING_EDGE (0)
+#endif
+#ifndef GUIMAI_GTM_DMA_LEFT_WS_LEVEL
+#define GUIMAI_GTM_DMA_LEFT_WS_LEVEL   (1U)
+#endif
+#ifndef GUIMAI_GTM_DMA_I2S_DELAY_BITS
+#define GUIMAI_GTM_DMA_I2S_DELAY_BITS  (0U)
+#endif
+
+#ifndef GUIMAI_GTM_TBCM_DIAG
+#define GUIMAI_GTM_TBCM_DIAG           (0)
+#endif
+#ifndef GUIMAI_GTM_TBCM_SAMPLE_LEADING_EDGE
+#define GUIMAI_GTM_TBCM_SAMPLE_LEADING_EDGE (1)
+#endif
+#ifndef GUIMAI_GTM_TIM_TSSM_DIAG
+#define GUIMAI_GTM_TIM_TSSM_DIAG       (1)
+#endif
+#ifndef GUIMAI_GTM_TIM_TSSM_MODE
+#define GUIMAI_GTM_TIM_TSSM_MODE       (6U)
+#endif
+#ifndef GUIMAI_GTM_TIM_TSSM_SHIFT_RIGHT
+#define GUIMAI_GTM_TIM_TSSM_SHIFT_RIGHT (1U)
+#endif
+#ifndef GUIMAI_GTM_TIM_TSSM_INIT_POL
+#define GUIMAI_GTM_TIM_TSSM_INIT_POL   (1U)
+#endif
+#ifndef GUIMAI_GTM_TIM_TSSM_TDU_DIAG
+#define GUIMAI_GTM_TIM_TSSM_TDU_DIAG   (1)
+#endif
+#ifndef GUIMAI_GTM_TIM_TSSM_BITS
+#define GUIMAI_GTM_TIM_TSSM_BITS       (16U)
+#endif
+#ifndef GUIMAI_GTM_TIM_TSSM_SHIFT_CLK_SEL
+#define GUIMAI_GTM_TIM_TSSM_SHIFT_CLK_SEL (0U)
+#endif
+#ifndef GUIMAI_GTM_TIM_TSSM_EXT_CAP_SEL
+#define GUIMAI_GTM_TIM_TSSM_EXT_CAP_SEL (1U)
+#endif
+#ifndef GUIMAI_GTM_TIM_TSSM_USE_TIM_IN
+#define GUIMAI_GTM_TIM_TSSM_USE_TIM_IN (1U)
+#endif
+#ifndef GUIMAI_GTM_TIM_TSSM_TDU_SLICING
+#define GUIMAI_GTM_TIM_TSSM_TDU_SLICING (2U)
+#endif
+#ifndef GUIMAI_GTM_TIM_TSSM_TCS_USE_SAMPLE_EVT
+#define GUIMAI_GTM_TIM_TSSM_TCS_USE_SAMPLE_EVT (0U)
+#endif
+#ifndef GUIMAI_GTM_TIM_TSSM_TDU_SAME_CNT_CLK
+#define GUIMAI_GTM_TIM_TSSM_TDU_SAME_CNT_CLK (0U)
+#endif
+#ifndef GUIMAI_GTM_TIM_TSSM_TDU_RESYNC
+#define GUIMAI_GTM_TIM_TSSM_TDU_RESYNC (2U)
+#endif
+#ifndef GUIMAI_GTM_TIM_TSSM_TOV
+#define GUIMAI_GTM_TIM_TSSM_TOV        (16U)
+#endif
+#ifndef GUIMAI_GTM_TIM_TSSM_TOV1
+#define GUIMAI_GTM_TIM_TSSM_TOV1       (16U)
+#endif
+#ifndef GUIMAI_GTM_TIM_TSSM_TOV2
+#define GUIMAI_GTM_TIM_TSSM_TOV2       (32U)
+#endif
+#ifndef GUIMAI_GTM_TIM_TSSM_RESET_ON_CAPTURE
+#define GUIMAI_GTM_TIM_TSSM_RESET_ON_CAPTURE (0U)
+#endif
+#ifndef GUIMAI_GTM_TIM_TSSM_EXT_CAP_EN
+#define GUIMAI_GTM_TIM_TSSM_EXT_CAP_EN (1U)
+#endif
+#ifndef GUIMAI_GTM_TIM_TSSM_ECLK_SEL
+#define GUIMAI_GTM_TIM_TSSM_ECLK_SEL   (1U)
+#endif
+#ifndef GUIMAI_GTM_TBCM_ENABLE_BCK_PREV_CH
+#define GUIMAI_GTM_TBCM_ENABLE_BCK_PREV_CH (1)
+#endif
+
+#ifndef GUIMAI_GTM_ARU_FIFO_DIAG
+#define GUIMAI_GTM_ARU_FIFO_DIAG       (0)
+#endif
+#ifndef GUIMAI_GTM_ARU_FIFO_PSM
+#define GUIMAI_GTM_ARU_FIFO_PSM        IfxGtm_Psm_Fifo_0
+#endif
+#ifndef GUIMAI_GTM_ARU_FIFO_F2A
+#define GUIMAI_GTM_ARU_FIFO_F2A        IfxGtm_Psm_F2a_0
+#endif
+#ifndef GUIMAI_GTM_ARU_FIFO_TRANSFER_MODE
+#define GUIMAI_GTM_ARU_FIFO_TRANSFER_MODE IfxGtm_Psm_F2aTransferMode_transferBothWords
+#endif
+#ifndef GUIMAI_GTM_ARU_FIFO_COUNT
+#define GUIMAI_GTM_ARU_FIFO_COUNT      (3U)
+#endif
+#ifndef GUIMAI_GTM_ARU_FIFO_SIZE
+#define GUIMAI_GTM_ARU_FIFO_SIZE       (64U)
+#endif
+#ifndef GUIMAI_GTM_AFD_DUMP_WORDS
+#define GUIMAI_GTM_AFD_DUMP_WORDS      (16U)
+#endif
+#ifndef GUIMAI_GTM_AFD_LIVE_DRAIN_WORDS
+#define GUIMAI_GTM_AFD_LIVE_DRAIN_WORDS (64U)
+#endif
+#ifndef GUIMAI_GTM_AFD_DMA_DIAG
+#define GUIMAI_GTM_AFD_DMA_DIAG        (0)
+#endif
+#ifndef GUIMAI_GTM_AFD_DMA_WORDS
+#define GUIMAI_GTM_AFD_DMA_WORDS       (32U)
+#endif
+#ifndef GUIMAI_GTM_AFD_DMA_HISTORY_WORDS
+#define GUIMAI_GTM_AFD_DMA_HISTORY_WORDS (32U)
+#endif
+#ifndef GUIMAI_GTM_TBCM_DECODE_DIAG
+#define GUIMAI_GTM_TBCM_DECODE_DIAG    (0)
+#endif
+#ifndef GUIMAI_GTM_TBCM_DECODE_CANDIDATES
+#define GUIMAI_GTM_TBCM_DECODE_CANDIDATES (4U)
+#endif
+#ifndef GUIMAI_GTM_TBCM_DECODE_RLE_MODES
+#define GUIMAI_GTM_TBCM_DECODE_RLE_MODES (2U)
+#endif
+#ifndef GUIMAI_GTM_TSSM_SLICE_CANDIDATES
+#define GUIMAI_GTM_TSSM_SLICE_CANDIDATES (6U)
+#endif
+
+#ifndef GUIMAI_QSPI1_SLAVE_RX
+#define GUIMAI_QSPI1_SLAVE_RX          (0)
+#endif
+#ifndef GUIMAI_QSPI1_WORD_BITS
+#define GUIMAI_QSPI1_WORD_BITS         (16U)
+#endif
+#ifndef GUIMAI_QSPI1_SAMPLE_SHIFT
+#define GUIMAI_QSPI1_SAMPLE_SHIFT      (0U)
+#endif
+#ifndef GUIMAI_QSPI1_SWAP16
+#define GUIMAI_QSPI1_SWAP16            (0)
+#endif
+#ifndef GUIMAI_QSPI1_SHIFT_TRAILING
+#define GUIMAI_QSPI1_SHIFT_TRAILING    (0)
+#endif
+#ifndef GUIMAI_QSPI1_MAX_BAUD
+#define GUIMAI_QSPI1_MAX_BAUD          (2000000.0F)
+#endif
+#ifndef GUIMAI_QSPI1_SYNC_ON_WS
+#define GUIMAI_QSPI1_SYNC_ON_WS        (0)
+#endif
+#ifndef GUIMAI_QSPI1_USE_SLSI_P11_10
+#define GUIMAI_QSPI1_USE_SLSI_P11_10   (1)
+#endif
+#ifndef GUIMAI_QSPI1_WS_SYNC_TIMEOUT_MS
+#define GUIMAI_QSPI1_WS_SYNC_TIMEOUT_MS (20U)
+#endif
+
+#ifndef GUIMAI_LINEIN_READ_BATCH
+#define GUIMAI_LINEIN_READ_BATCH       (256U)
+#endif
+#ifndef GUIMAI_RECORD_CLOCK_PUMP_ENABLE
+#define GUIMAI_RECORD_CLOCK_PUMP_ENABLE (0)
+#endif
+#ifndef GUIMAI_RECORD_CLOCK_PUMP_MAX_FRAMES
+#define GUIMAI_RECORD_CLOCK_PUMP_MAX_FRAMES (32U)
+#endif
+#ifndef GUIMAI_AUDIO_HOTPATH_LOG
+#define GUIMAI_AUDIO_HOTPATH_LOG       (0)
+#endif
+#ifndef GUIMAI_FW_TAG
+#define GUIMAI_FW_TAG                  ("2026-06-30-record-health-reinit")
+#endif
+#ifndef GUIMAI_RX_DEBUG
+#define GUIMAI_RX_DEBUG                (0)
+#endif
+#ifndef GUIMAI_TX_DEBUG
+#define GUIMAI_TX_DEBUG                (0)
+#endif
+
+#ifndef GUIMAI_COMMAND_QUEUE_SIZE
+#define GUIMAI_COMMAND_QUEUE_SIZE      (64U)
+#endif
+
+#if GUIMAI_AUDIO_USE_ADC
+#if GUIMAI_GTM_DMA_CAPTURE || GUIMAI_GTM_TBCM_DIAG || GUIMAI_QSPI1_SLAVE_RX || GUIMAI_RECORD_PCM_TRANSFORM_MODE || GUIMAI_RECORD_TRANSFORM_DIAG
+#error "ADC audio requires legacy I2S capture/transform diagnostics disabled"
+#endif
+#if GUIMAI_MUSIC_ENABLE || (GUIMAI_HORN_ENABLE && !GUIMAI_HORN_USE_BUZZER) || GUIMAI_RECORD_PRE_MCLK_ENABLE
+#error "ADC-only audio requires codec music/clocks disabled and buzzer horn selected"
+#endif
+#if !GUIMAI_RECORD_DEFER_TX || !GUIMAI_RECORD_STREAM_TX || !GUIMAI_RECORD_TIGHT_LOOP || !GUIMAI_RECORD_USE_DEDICATED_CORE
+#error "ADC audio requires the dedicated recording core and streaming TX queue"
+#endif
+#if (GUIMAI_ADC_DC_FILTER_DIV < 2) || (GUIMAI_ADC_PCM_GAIN < 1) || (GUIMAI_ADC_PCM_GAIN > 32768)
+#error "Invalid ADC DC filter or PCM gain"
+#endif
+#if (GUIMAI_AUDIO_SAMPLE_RATE != 16000U) || (GUIMAI_LINEIN_READ_BATCH < 1U) || (GUIMAI_LINEIN_READ_BATCH > 512U)
+#error "ADC backend expects 16 kHz audio and a read batch of 1..512 samples"
+#endif
+#endif
+
+#endif /* CODE_GUIMAI_VOICE_CONFIG_H_ */
