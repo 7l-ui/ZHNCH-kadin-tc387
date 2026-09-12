@@ -77,3 +77,7 @@ libraries/       逐飞库 + 英飞凌 AURIX 官方库
 ## 开源协议
 
 本项目采用 [MIT License](LICENSE) 开源，仅供学习交流使用。
+
+## 说明
+
+本 README 由 AI 辅助总结生成。
